@@ -1,4 +1,4 @@
-# -*- coding:utf-8 -*-
+#-*- coding:utf-8 -*-
 import requests
 import random
 import traceback
@@ -290,7 +290,7 @@ class HaiDiLao:
         }
         json = {"_HAIDILAO_APP_TOKEN": "", "customerId": "", "country": "CN", "mobile": username,
                 "appPushId": "android_8565c4168be4441b96e7c1fb490c7ec8", "passWord": await self.calculate_md5(password)}
-        response = requests.post(url, headers=headers, json=json, ).json()
+        response = requests.post(url, headers=headers, json=json,).json()
         try:
             self.user_id = response['data']['id']
             self.pnpName = response['data']['pnpName']
@@ -319,7 +319,7 @@ class HaiDiLao:
         duiba_cookies = requests.utils.dict_from_cookiejar(s.cookies)
         return duiba_cookies
 
-    async def signin(self, activity_id, duiba_cookies):
+    async def signin(self, activity_id,duiba_cookies):
         s = requests.session()
         s.headers['Referer'] = "http://www.haidilao.com/"
         s.headers['User-Agent'] = "Haidilao/6.1.0 (Redmi 4A 23 Android 6.0.1)"
@@ -329,7 +329,7 @@ class HaiDiLao:
         printer(response)
 
     async def get_game_token(self):
-        # url = "https://dev-api-hdl.51h5.com/hdl/game/init"
+        #url = "https://dev-api-hdl.51h5.com/hdl/game/init"
         url = "https://api-hdl.51h5.com/hdl/game/init"
         headers = {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -386,7 +386,7 @@ class HaiDiLao:
         self.birdC = str(int(self.gameC) + random.randint(15, 50))
         self.gBirdC = str(self.gameC)
         self.gameScore = str(int(self.add1) + 4 * int(self.add2) + 8 * int(self.add3) + 15 * int(self.add4))
-        # url = "https://dev-api-hdl.51h5.com/hdl/game/begin"
+        #url = "https://dev-api-hdl.51h5.com/hdl/game/begin"
         url = "https://api-hdl.51h5.com/hdl/game/begin"
         headers = {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -404,9 +404,8 @@ class HaiDiLao:
         response = requests.post(url, headers=headers, data=data)
         self.gkey = response.json()['data']['gkey']
 
-        await
-        asyncio.sleep((int(self.gameET) - int(self.gameST)) / 1000)
-        # url = "https://dev-api-hdl.51h5.com/hdl/game/end"
+        await asyncio.sleep((int(self.gameET) - int(self.gameST)) / 1000)
+        #url = "https://dev-api-hdl.51h5.com/hdl/game/end"
         url = "https://api-hdl.51h5.com/hdl/game/end"
         data = {
             "token": self.gametoken,
@@ -469,7 +468,7 @@ class HaiDiLao:
         self.MAXSCOREBEI = 5
         self.SINGLESCORE = 10
         self.caclulate_score_for_g2()
-        # url = "https://dev-api-hdl.51h5.com/hdl/game/begin"
+        #url = "https://dev-api-hdl.51h5.com/hdl/game/begin"
         url = "https://api-hdl.51h5.com/hdl/game/begin"
         headers = {
             "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
@@ -487,15 +486,14 @@ class HaiDiLao:
         response = requests.post(url, headers=headers, data=data)
         self.gkey = response.json()['data']['gkey']
 
-        await
-        asyncio.sleep((int(self.gs_et) - int(self.gs_st)) / 1000)
+        await asyncio.sleep((int(self.gs_et) - int(self.gs_st)) / 1000)
 
         self.scoreRecord = self.scoreRecord + self.vxy(self.recobj['gs_st'], self.scoreCount, self.gkey) + "-"
         self.scoreRecord = self.scoreRecord + self.vxy(self.recobj['gs_st'], 0, self.gkey) + "-"
         self.scoreRecord = self.scoreRecord + self.vxy(self.recobj['gs_st'], 0, self.gkey) + "-"
         self.scoreRecord = self.scoreRecord + self.vxy(self.recobj['gs_st'], 0, self.gkey) + "-"
         self.scoreRecord = self.scoreRecord + self.vxy(self.recobj['gs_st'], 0, self.gkey)
-        # url = "https://dev-api-hdl.51h5.com/hdl/game/end"
+        #url = "https://dev-api-hdl.51h5.com/hdl/game/end"
         url = "https://api-hdl.51h5.com/hdl/game/end"
         data = {
             "token": self.gametoken,
@@ -557,8 +555,7 @@ class HaiDiLao:
 
         self.gkey = response.json()['data']['gkey']
 
-        await
-        asyncio.sleep((int(self.gameET) - int(self.gameST)) / 1000)
+        await asyncio.sleep((int(self.gameET) - int(self.gameST)) / 1000)
 
         url = "https://api-hdl.51h5.com/hdl/game/end"
         data = {
@@ -578,41 +575,30 @@ class HaiDiLao:
         while 1:
             try:
                 now_hour = time.localtime().tm_hour
-                if now_hour == 17:
-                    await
-                    self.login(username, password)
+                if now_hour == 8:
+                    await self.login(username, password)
                     printer(f"账号{username}正在运行中...")
                     now_day = time.localtime().tm_wday
                     if now_day == 0:
                         for _ in range(140):
-                            await
-                            self.get_game_token()
+                            await self.get_game_token()
                             printer(f"账号{username}正在进行3rd游戏刷分,目前进行到第{_ + 1}轮")
-                            await
-                            self.play_game3("03")
+                            await self.play_game3("03")
                     for _ in range(3):
                         for game_id in self.game_list:
                             printer(f"账号{username}正在进行三轮刷分,目前进行到第{_ + 1}轮")
-                            await
-                            self.get_game_token()
+                            await self.get_game_token()
                             if game_id == "01":
-                                await
-                                self.play_game1(game_id)
+                                await self.play_game1(game_id)
                             if game_id == "02":
-                                await
-                                self.play_game2(game_id)
+                                await self.play_game2(game_id)
                             if game_id == "03":
-                                await
-                                self.play_game3(game_id)
-                    duiba_cookies = await
-                    self.cookie_to_duiba()
+                                await self.play_game3(game_id)
+                    duiba_cookies = await self.cookie_to_duiba()
                     for activity_id in self.sign_list:
-                        await
-                        self.signin(activity_id, duiba_cookies)
-                        await
-                        asyncio.sleep(30)
-                await
-                asyncio.sleep(30)
+                        await self.signin(activity_id,duiba_cookies)
+                        await asyncio.sleep(30)
+                await asyncio.sleep(30)
             except:
                 traceback.print_exc()
 
