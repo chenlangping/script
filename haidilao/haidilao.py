@@ -6,28 +6,25 @@ import hashlib
 import time
 import asyncio
 
-usernames = [""]
-passwords = [""]
-
+start_time = 18
 
 def CurrentTime():
     currenttime = time.time()
     return int(currenttime * 1000)
 
 
-# 格式化打印模块
-def printer(info, *args):
+def printer(info,file_name='hdl.log', *args):
     at_now = int(time.time())
     time_arr = time.localtime(at_now)
     format_time = time.strftime("%Y-%m-%d %H:%M:%S", time_arr)
     content = f'[{format_time}] {info} {" ".join(f"{str(arg)}" for arg in args)}'
     print(content)
-    with open("hdl_log9.txt", "a+", encoding="utf-8")as f:
+    with open(file_name+'.log', "a+", encoding="utf-8")as f:
         f.write(content + "\n")
 
 
 class HaiDiLao:
-    def __init__(self):
+    def __init__(self,phoneNumber):
         self.sign_list = [90, 181, 211, 307]
         self.game_list = ["01", "02", "03"]
         self.gotoT = str(CurrentTime())
@@ -123,6 +120,7 @@ class HaiDiLao:
         self.token = ""
         self.headImg = ""
         self.gametoken = ""
+        self.phoneNumber = phoneNumber
 
     def caclulate_score_for_g2(self):
         for i in range(0, int(self.tapleft)):
@@ -314,7 +312,7 @@ class HaiDiLao:
         url = response.json()['data']
         s = requests.session()
         s.headers['User-Agent'] = "Haidilao/6.1.0 (Redmi 4A 23 Android 6.0.1)"
-        printer(url)
+        printer(url,self.phoneNumber)
         s.get(url, headers=headers, allow_redirects=False)
         duiba_cookies = requests.utils.dict_from_cookiejar(s.cookies)
         return duiba_cookies
@@ -326,7 +324,7 @@ class HaiDiLao:
         s.cookies = requests.utils.cookiejar_from_dict(duiba_cookies)
         url = f"https://activity.m.duiba.com.cn/signactivity/doSign?id={activity_id}&_={str(CurrentTime())}"
         response = s.get(url).json()
-        printer(response)
+        printer(response,self.phoneNumber)
 
     async def get_game_token(self):
         #url = "https://dev-api-hdl.51h5.com/hdl/game/init"
@@ -417,7 +415,7 @@ class HaiDiLao:
         }
         response = requests.post(url, headers=headers, data=data)
         print(response.json())
-        printer(f"游戏1获得积分:{response.json()['data']['credit']}")
+        printer(f"游戏1获得积分:{response.json()['data']['credit']}",self.phoneNumber)
 
     async def play_game2(self, game_id):
         self.reclist = ["ps", "ls", "le", "w", "h", "sc", "sx", "sy", "nc", "ic", "ix", "iy", "qc", "qx", "qy"]
@@ -504,7 +502,7 @@ class HaiDiLao:
             "gd": self.caclulate_gd_for_g2()
         }
         response = requests.post(url, headers=headers, data=data)
-        printer(f"游戏2回显:{response.json()}")
+        printer(f"游戏2回显:{response.json()}",self.phoneNumber)
 
     async def play_game3(self, game_id):
         self.gotoT = str(CurrentTime())
@@ -569,24 +567,24 @@ class HaiDiLao:
             "gd": self.caclulate_gd_for_g3()
         }
         response = requests.post(url, headers=headers, data=data)
-        printer(f"游戏3回显:{response.json()}")
+        printer(f"游戏3回显:{response.json()}",self.phoneNumber)
 
     async def run(self, username, password):
         while 1:
             try:
                 now_hour = time.localtime().tm_hour
-                if now_hour == 8:
+                if now_hour == start_time:
                     await self.login(username, password)
-                    printer(f"账号{username}正在运行中...")
+                    printer(f"账号{username}正在运行中...",self.phoneNumber)
                     now_day = time.localtime().tm_wday
                     if now_day == 0:
                         for _ in range(140):
                             await self.get_game_token()
-                            printer(f"账号{username}正在进行3rd游戏刷分,目前进行到第{_ + 1}轮")
+                            printer(f"账号{username}正在进行3rd游戏刷分,目前进行到第{_ + 1}轮",self.phoneNumber)
                             await self.play_game3("03")
                     for _ in range(3):
                         for game_id in self.game_list:
-                            printer(f"账号{username}正在进行三轮刷分,目前进行到第{_ + 1}轮")
+                            printer(f"账号{username}正在进行三轮刷分,目前进行到第{_ + 1}轮",self.phoneNumber)
                             await self.get_game_token()
                             if game_id == "01":
                                 await self.play_game1(game_id)
@@ -601,14 +599,28 @@ class HaiDiLao:
                 await asyncio.sleep(30)
             except:
                 traceback.print_exc()
+                exit()
 
 
-loop = asyncio.get_event_loop()
+def main():
+    loop = asyncio.get_event_loop()
+    tasks1 = []
+    usernames = []
+    passwords = []
 
-tasks1 = []
-for i1, i2 in zip(usernames, passwords):
-    task = HaiDiLao().run(i1, i2)
-    tasks1.append(task)
+    # read user info from file
+    for line in open('auth','r'):
+        usernames.append(line.strip().split('#')[0])
+        passwords.append(line.strip().split('#')[1])
+    
+    # start 
+    for i1, i2 in zip(usernames, passwords):
+        task = HaiDiLao(i1).run(i1, i2)
+        tasks1.append(task)
+    
+    loop.run_until_complete(asyncio.wait(tasks1))
+    loop.close()
 
-loop.run_until_complete(asyncio.wait(tasks1))
-loop.close()
+
+if __name__ == '__main__':
+    main()
