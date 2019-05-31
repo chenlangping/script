@@ -2,6 +2,9 @@
 
 import requests
 import hashlib
+import time
+import random
+from config import Config
 
 
 def calculate_md5(string):
@@ -15,9 +18,14 @@ def login(username, password):
     url = "https://superapp.kiwa-tech.com/login/enter"
     json = {"country": "CN", "mobile": username, "passWord": calculate_md5(password)}
     response = requests.post(url, json=json)
-    if response.text.find('成功'):
+    try:
+        user_id = response['data']['id']
+        pnpName = response['data']['pnpName']
+        token = response['data']['token']
+        print(username, "登录成功")
         return True
-    else:
+    except:
+        print(username, "fail to login")
         return False
 
 
@@ -37,5 +45,6 @@ if __name__ == '__main__':
     for i in range(count):
         if not login(user_names[i], passwords[i]):
             wrong_Password += 1
+            time.sleep(random.randint(Config.minIdle, Config.maxIdle))
 
     print('The number of Wrong Password = ' + str(wrong_Password))
