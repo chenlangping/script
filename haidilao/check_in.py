@@ -3,6 +3,9 @@ import requests
 import traceback
 import hashlib
 import time
+import random
+
+from config import Config
 
 
 def CurrentTime():
@@ -60,7 +63,8 @@ class HaiDiLao:
         json = {"_HAIDILAO_APP_TOKEN": self.token, "customerId": self.user_id, "uid": self.user_id,
                 "url": f"https://activity.m.duiba.com.cn/signactivity/index?id=307"}
         response = requests.post(url, headers=headers, json=json)
-        print(response.text)
+        if "成功" in response.text:
+            print("get cookie success")
         try:
             url = response.json()['data']
         except:
@@ -76,18 +80,20 @@ class HaiDiLao:
         s.headers['User-Agent'] = "Haidilao/6.1.0 (Redmi 4A 23 Android 6.0.1)"
         s.cookies = requests.utils.cookiejar_from_dict(duiba_cookies)
         url = f"https://activity.m.duiba.com.cn/signactivity/doSign?id={activity_id}&_={str(CurrentTime())}"
-        s.get(url).json()
+        print(s.get(url).json())
 
     def run(self, username, password):
         try:
             if self.login(username, password):
                 # 登录成功
-                printer(f"账号{username}正在运行中...", username)
+                printer(f"账号{username}正在运行中...")
                 self.get_duiba_cookie()
                 if len(self.duiba_cookies) > 0:
                     # 获取cookie成功
                     for activity_id in [90, 181, 211, 307]:
                         self.signin(activity_id, self.duiba_cookies)
+                    # 成功
+                    printer(username,username)
                 else:
                     # 获取cookie失败
                     print("fail to get duiba_cookie")
@@ -111,7 +117,7 @@ def main():
     # start 
     for i1, i2 in zip(usernames, passwords):
         HaiDiLao().run(i1, i2)
-        time.sleep(600)
+        time.sleep(random.randint(Config.minIdle,Config.maxIdle))
 
 
 if __name__ == '__main__':
