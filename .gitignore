@@ -111,3 +111,6 @@ auth
 
 # log file
 *.log
+
+# IDEA
+haidilao/.idea/
