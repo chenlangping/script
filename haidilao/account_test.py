@@ -17,11 +17,9 @@ def calculate_md5(string):
 def login(username, password):
     url = "https://superapp.kiwa-tech.com/login/enter"
     json = {"country": "CN", "mobile": username, "passWord": calculate_md5(password)}
-    response = requests.post(url, json=json)
+    response = requests.post(url, json=json).json()
     try:
-        user_id = response['data']['id']
-        pnpName = response['data']['pnpName']
-        token = response['data']['token']
+        user_id = response['success']
         print(username, "登录成功")
         return True
     except:
