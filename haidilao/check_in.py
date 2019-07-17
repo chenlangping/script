@@ -310,13 +310,16 @@ class HaiDiLao:
                 "url": f"https://activity.m.duiba.com.cn/signactivity/index?id=307"}
         response = requests.post(url, headers=headers, json=json)
         print(response.text)
-        url = response.json()['data']
-        s = requests.session()
-        s.headers['User-Agent'] = "Haidilao/6.1.0 (Redmi 4A 23 Android 6.0.1)"
-        printer(url,self.phoneNumber)
-        s.get(url, headers=headers, allow_redirects=False)
-        duiba_cookies = requests.utils.dict_from_cookiejar(s.cookies)
-        return duiba_cookies
+        try:
+            url = response.json()['data']
+            s = requests.session()
+            s.headers['User-Agent'] = "Haidilao/6.1.0 (Redmi 4A 23 Android 6.0.1)"
+            printer(url,self.phoneNumber)
+            s.get(url, headers=headers, allow_redirects=False)
+            duiba_cookies = requests.utils.dict_from_cookiejar(s.cookies)
+            return duiba_cookies
+        except:
+            return False
 
     async def signin(self, activity_id,duiba_cookies):
         s = requests.session()
@@ -575,9 +578,12 @@ class HaiDiLao:
             await self.login(username, password)
             printer(f"账号{username}正在运行中...",self.phoneNumber)
             duiba_cookies = await self.cookie_to_duiba()
-            for activity_id in self.sign_list:
-                await self.signin(activity_id,duiba_cookies)
-                await asyncio.sleep(30)
+            if not duiba_cookies:
+                pass
+            else:
+                for activity_id in self.sign_list:
+                    await self.signin(activity_id,duiba_cookies)
+                    await asyncio.sleep(30)
         except:
             traceback.print_exc()
             exit()
