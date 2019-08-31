@@ -1,0 +1,19 @@
+# Warning!!! if you had changed the sources.list, please do not use this !!!
+# Before you change your sources.list file, please back up your souces.list
+
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+
+# and you can use sed to change
+
+# For aliyun   
+sudo sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
+
+# For ustc
+sudo sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+
+# For tuna
+sudo sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list
+
+# And do not forget!!
+sudo apt-get update
