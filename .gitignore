@@ -114,3 +114,6 @@ auth
 
 # IDE
 ./idea
+
+# FF14
+*.png
