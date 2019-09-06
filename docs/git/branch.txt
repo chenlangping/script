@@ -1,0 +1,17 @@
+# show all local branches
+git branch
+
+# show all remote branches
+git branch -r
+
+# show local branches and remote branches
+git branch -a
+
+# create a new branch
+git branch new-breanch-name
+
+# create a new branch and switch to it
+git branch -b new-breanch-name
+
+# create a new branch to trace the remote branch
+git branch --track new-breanch-name remote-branch

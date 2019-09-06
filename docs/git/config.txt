@@ -1,0 +1,18 @@
+# set username and email
+git config [--global] user.name "YourName"
+git config [--global] user.email "YourEmailAddress"
+
+# show all git config
+git config --list
+
+# set editor
+git config --global core.editor emacs
+
+# use editor to change config
+git config -e [--global]
+
+# set CRLF and LF replace
+git config --global core.autocrlf false
+
+# remember the password (in RAM)
+git config --global credential.helper "cache --timeout=3600"
