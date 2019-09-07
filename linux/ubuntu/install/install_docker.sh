@@ -25,8 +25,10 @@ sudo systemctl start docker
 # sudo service docker start
 
 # create docker group
-sudo groupadd docker
-sudo usermod -aG docker $USER
+# sudo groupadd docker
+
+# add user to the docker group
+# sudo usermod -aG docker $USER
 
 # run the test
-# docker run hello_world
+# docker run hello-world
