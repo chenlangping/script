@@ -22,8 +22,11 @@ git config --global http.proxy http://127.0.0.1:1080
 git config --global https.proxy https://127.0.0.1:1080
 
 # set socks5 proxy
-git config --global http.proxy 'socks5://127.0.0.1:1080'
-git config --global https.proxy 'socks5://127.0.0.1:1080'
+git config --global http.proxy socks5://127.0.0.1:1080
+git config --global https.proxy socks5://127.0.0.1:1080
+
+# set ssh proxy
+echo "\nHost github.com\nUser git\nProxyCommand nc -v -x 127.0.0.1:1080 %h %p" >> ~/.ssh/config
 
 # unset proxy
 git config --global --unset http.proxy
