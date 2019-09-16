@@ -1,0 +1,22 @@
+.
+│   FFXIV.cfg                   //游戏系统设置
+│   FFXIV_CHARA_01.dat          //捏人数据
+│   FFXIV_CHARA_02.dat          //捏人数据
+│   FFXIV_CHARA_03.dat          //捏人数据
+│   MACROSYS.dat                //系统宏
+│
+└───FFXIV_CHR00438D8134CC9064   //角色数据文件
+        ACQ.DAT                 //
+        ADDON.DAT               //UI设置
+        COMMON.DAT              //角色设置
+        CONTROL0.DAT            //键盘设置
+        CONTROL1.DAT            //手柄设置
+        GEARSET.DAT             //保存的装备设置
+        GS.DAT                  //
+        HOTBAR.DAT              //快捷键设置（每个快捷栏摆放的东西）
+        ITEMFDR.DAT             //物品栏、兵装库中物品摆放顺序
+        ITEMODR.DAT             //
+        KEYBIND.DAT             //键位设置
+        LOGFLTR.DAT             //聊天窗口设置
+        MACRO.DAT               //宏设置
+        UISAVE.DAT              //UI使用记录
