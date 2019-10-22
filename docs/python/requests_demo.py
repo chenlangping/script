@@ -1,35 +1,46 @@
 #!/usr/bin/env python
 # -- coding:utf-8 --
-
-# pip install requests
-
 import requests
-r = requests.get('https://api.github.com/events')
 
-# r is a response object <class 'requests.models.Response'>
-# print(type(r))  
+class URL(object):
+	url = "www.example.com"
 
-# other methods 
-# r = requests.post('http://httpbin.org/post', data = {'key':'value'})
-# r = requests.put('http://httpbin.org/put', data = {'key':'value'})
-# r = requests.delete('http://httpbin.org/delete')
-# r = requests.head('http://httpbin.org/get')
-# r = requests.options('http://httpbin.org/get')
+class NetworkException(Exception):
+	# do something when network sucks!
+    pass
 
-# construct URL
-# payload = {'key1': 'value1', 'key2': ['value2', 'value3']}
-# r = requests.get('http://httpbin.org/get', params=payload)
-# print(r.url)
+class Cli(object):
+	headers = {
+        'Connection': 'keep-alive',
+        'Pragma': 'no-cache',
+        'Cache-Control': 'no-cache',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0',
+        'Accept-Encoding': 'gzip, deflate, sdch',
+        'Accept-Language': 'zh-CN,zh;q=0.8,en;q=0.6',
+    }
 
-# show the response data
-# print(r.text)
+    def __init__(self):
+    	super(Cli, self).__init__()
+    	self.s = requests.Session()
+        self.s.headers = self.headers
 
-# show the encoding and you can set encoding
-# print(r.encoding)
-# r.encoding='gbk'
+    def get(self, url, *args, **kwargs):
+        r = self.s.get(url, *args, **kwargs)
+        if r.status_code != requests.codes.ok:
+            raise NetworkException
+        return r
 
-# show the binary content
-# print(r.content)
+    def post(self, url, *args, **kwargs):
+        r = self.s.post(url, *args, **kwargs)
+        if r.status_code != requests.codes.ok:
+            raise NetworkException
+        return r
 
-# status code  eg. 200
-print(r.status_code)
+def main():
+	c = Cli()
+	c.get(URL.url)
+
+if __name__ == '__main__':
+	main()

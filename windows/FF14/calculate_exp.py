@@ -31,7 +31,7 @@ print(f"需要经验 = {sum_exp}")
 
 j = cur_pro_task_level - 1
 sum_pro_task_exp = 0
-while j < target_level - 1:
+while j < target_level - 1 and j < 70:
     sum_pro_task_exp += pro_task_exp[j]
     j += 1
 print(f"可以从职业任务中获得经验 = {sum_pro_task_exp}")
