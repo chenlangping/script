@@ -41,10 +41,10 @@ if __name__ == '__main__':
         "host": "localhost",
         "user": "root",
         "passwd": "123456",
-        "db": "TEST"
+        "db": "test"
     }
     mysql = Mysql(db_config)
     print(mysql.show_databases())
     print(mysql.show_tables())
-    sql = "SELECT * FROM Customers"
+    sql = "SELECT * FROM COMPANY"
     print(mysql.select(sql))
