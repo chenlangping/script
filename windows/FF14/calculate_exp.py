@@ -10,30 +10,18 @@ exp = [300, 600, 1100, 1700, 2300, 4200, 6000, 7350, 9930, 11800,
        4873000, 5316000, 5809000, 6364000, 6995000, 7722000, 8575000, 9593000, 10826000, 12449000,
        13881000, 15556000, 17498600, 19750000, 22330000, 25340000, 28650000, 32750000, 37650000
        ]
-pro_task_exp = [
-    250, 0, 0, 0, 1148, 0, 0, 0, 0, 5899,
-    0, 0, 0, 0, 15120, 0, 0, 0, 0, 28420,
-    0, 0, 0, 0, 47600, 0, 0, 0, 0, 81510,
-    0, 0, 0, 0, 117260, 0, 0, 0, 0, 163415,
-    0, 0, 0, 0, 204930, 0, 0, 0, 0, 520800,
-    0, 0, 777600, 0, 1108800, 0, 0, 1713600, 0, 2167830,
-    0, 0, 1725300, 0, 2079000, 0, 0, 2902500, 0
-]
-cur_level = int(input("当前等级 = "))
-target_level = int(input("目标等级 = "))
-cur_pro_task_level = int(input("当前职业任务等级 = "))
+try:
+    cur_level = int(input("当前等级 = "))
+    target_level = int(input("目标等级 = "))
+except ValueError:
+    print("请输入正确等级")
+    exit()
 i = cur_level - 1
 sum_exp = 0
-while i < target_level - 1:
-    sum_exp += exp[i]
-    i += 1
-print(f"需要经验 = {sum_exp}")
-
-j = cur_pro_task_level - 1
-sum_pro_task_exp = 0
-while j < target_level - 1 and j < 70:
-    sum_pro_task_exp += pro_task_exp[j]
-    j += 1
-print(f"可以从职业任务中获得经验 = {sum_pro_task_exp}")
-
-print(f"还需要自己获得经验 = {sum_exp - sum_pro_task_exp}")
+try:
+    while i < target_level - 1:
+        sum_exp += exp[i]
+        i += 1
+    print(f"需要经验 = {sum_exp}")
+except IndexError:
+    print("请输入正确等级区间")
