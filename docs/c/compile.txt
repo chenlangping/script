@@ -1,0 +1,9 @@
+# if you want to compile some c files
+cc file1.c file2.c
+
+# please check the file suffix, you can't use gcc to compile file which don't have .c as it's suffix
+cc file    # <- wrong
+cc file.c  # <- right
+
+# how to know the compiler's search path?
+cpp -v /dev/null -o /dev/null    # see more: https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html
