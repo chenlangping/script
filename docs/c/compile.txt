@@ -7,3 +7,6 @@ cc file.c  # <- right
 
 # how to know the compiler's search path?
 cpp -v /dev/null -o /dev/null    # see more: https://gcc.gnu.org/onlinedocs/cpp/Search-Path.html
+
+# I want to trace system calls and signals
+strace ./a.out
