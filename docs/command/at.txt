@@ -1,0 +1,36 @@
+# restart at command
+systemctl restart atd
+
+# start "at" with booting
+systemctl enable atd
+
+# show the status of at
+systemctl status atd
+
+# run some command 1 minute(s) later
+at now + 1 minutes   \n
+/usr/bin/touch 1.txt \n
+EOF
+
+# run some command at specific time
+at 12:00 2020-08-08  \n
+/sbin/reboot   \n
+EOF 
+
+# show the at list
+at -c jobnumber
+atq
+
+# remove the command
+atrm jobnumber
+
+# run command only when system is not too busy
+just change "at" to "batch"
+
+# forbid someone to use "at"
+echo "someone" >> /etc/at.deny
+
+# let someone use "at"
+echo "someone" >> /etc/at.allow
+
+# you may feel confused about these above two files, just remove one and remain the other. 

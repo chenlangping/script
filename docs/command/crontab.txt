@@ -1,0 +1,32 @@
+# forbid someone to use "crontab"
+echo "someone" >> /etc/cron.deny
+
+# let someone use "crontab"
+echo "someone" >> /etc/cron.allow
+
+# you may feel confused about these above two files, just remove one and remain the other. 
+# if you want to know more about crontab command, you can cd to /var/spool/cron to see the files
+# but please do not edit these files.
+
+# write some plans that belong to you
+crontab -e
+
+# and please edit the file like this:
+* * * * * some-command
+
+# use "man 5 crontab" see the every * meaning
+
+# list all the crontab
+crontab -l
+
+# remove all the crontab
+crontab -r   <- this will delete all the files that belong to you 
+rm /var/spool/cron/...(find your own file)
+
+# write some plans that belongs to system
+vim /etc/crontab
+
+# generally speaking, there are three path that stores crontab files:
+/etc/crontab
+/etc/cron.d/
+/var/spool/cron/
