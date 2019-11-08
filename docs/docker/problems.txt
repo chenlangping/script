@@ -1,0 +1,5 @@
+# here are the problems I meet, some of them may have been solved
+# some of them may still exit.
+
+1. docker can only listen for ipv6, but not listen ipv4
+see also at: https://github.com/moby/moby/issues/2174

@@ -1,0 +1,11 @@
+# mirror setting
+vim /etc/docker/daemon.json
+
+# add this to json file
+{
+  "registry-mirrors": ["https://w49z0ggw.mirror.aliyuncs.com"]
+}
+
+# restart it
+sudo systemctl daemon-reload
+sudo systemctl restart docker

@@ -1,0 +1,17 @@
+# if you just want to run the container 
+docker run -it ubuntu /bin/bash
+
+# -i means to open STDIN
+# -t means to open a pseudo terminal
+
+# if you want to run container in the background
+# remember !!! it just runs in background, not for "daemon"!
+docker run -d ubuntu /bin/bash
+
+# so if you want run some service(long time), you need to some command
+# that can run for long time. e.g nginx -g "daemon off;", and -d is necessary
+# because you can't let container in the foreground all the time
+docker run -p host_machine_ip:host_machine_port:docker_container_port nginx nginx -g "daemon off;"
+
+# run docker container for different name
+docker run --name name_you_like 

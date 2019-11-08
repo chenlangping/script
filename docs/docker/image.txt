@@ -1,0 +1,9 @@
+# show all the images
+docker images 
+docker image ls -a
+
+# search the specfic image
+docker search python
+
+# pull the image you want
+docker image pull python:3.8.0

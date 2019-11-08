@@ -1,0 +1,9 @@
+# how to login docker hub?
+# please note that the passwd file was in /root/.docker/config.json
+# and it was "encrypted" with base64 which means you can use "base64 -d"
+# to "decrypt" it. 
+docker login
+
+# if you enable the two factory, please use the access token to login
+# and still, the token will be in /root/.docker/config.json
+docker login -u your_user_name

@@ -1,0 +1,4 @@
+# It is NOT recommanded now, so just have a look is enough
+docker commit container_id username/image_name
+
+# see more in dockerfile

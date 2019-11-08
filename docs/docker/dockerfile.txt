@@ -1,0 +1,41 @@
+# first make a empty dirctory and touch a dockerfile
+mkdir web_server && cd web_server && touch Dockerfile
+
+# please remember that the web_server dirctory now is build context
+# and the docker daemon can access this build context(dirctory)
+
+# the following is a nginx demo
+-------------------------------------------------------------------
+# Version: 0.0.1
+FROM ubuntu:14.04
+MAINTAINER Your-Name "your-email-address"
+RUN apt-get update && apt-get install -y nginx
+RUN echo 'this is build by dockerfile' \
+	>/usr/share/nginx/html/index.html
+EXPOSE 80
+-------------------------------------------------------------------
+
+# and you can build with this dockerfile
+docker build -t="yourname/image_name:tag" /docker_file_position
+
+# you can use docker history to see how this image was built
+docker history image_id
+
+# the difference between CMD and ENTRYPOINT
+only last one CMD will run, and it can be replaced by "docker run ..."
+please remember to use CMD like this: CMD ["/bin/bash","some command",....]
+if you write ENTRYPOINT ["/usr/sbin/nginx"], and you may need to use 
+"docker run nginx:latest -h" instead of "docker run nginx:latest /usr/sbin/nginx -h"
+
+# WORKDIR, you can set the following commands' work directory
+# and the next commands will be run in that directory
+WORKDIR /var/www/html
+
+# ENV, just set the env var, and you can use "set" command in linux bash to see
+ENV PORT 34567
+
+# ADD, easily speaking, just put the file from your host machine to docker container
+ADD ./test.txt /tmp/test.txt
+
+# COPY, almost same as ADD, ADD will extract automatically, but COPY won't
+COPY ./test.txt /tmp/test.txt
