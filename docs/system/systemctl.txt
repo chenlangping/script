@@ -1,0 +1,10 @@
+# start daemon
+service start httpd 
+systemctl start httpd
+
+# start with boot
+systemctl enable httpd
+
+# when you install a software, it will add it's service in /usr/lib/systemd/system
+# so systemctl enable will create a soft link to /etc/systemd/system
+# and systemd will run all the files that in /etc/systemd/system

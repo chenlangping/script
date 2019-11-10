@@ -1,9 +1,9 @@
 # mirror setting
 vim /etc/docker/daemon.json
 
-# add this to json file
+# add this to json file, specific url please login in aliyun to get
 {
-  "registry-mirrors": ["https://w49z0ggw.mirror.aliyuncs.com"]
+  "registry-mirrors": ["https://xxxxxxx.mirror.aliyuncs.com"]
 }
 
 # restart it
