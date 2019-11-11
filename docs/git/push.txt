@@ -1,0 +1,5 @@
+# I found there is a bad push, e.g. I push my password to github
+# what should I do?
+# first reset your local repo, depends on 
+git reset --hard commit-id
+git reset --soft commit-id

@@ -1,0 +1,24 @@
+# first, you need to let mysql listen on 0.0.0.0 instead of 127.0.0.1
+sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+
+# find bind-address = 127.0.0.1(default line 43) and change it to
+bind-address = 0.0.0.0
+
+# restart mysql
+sudo systemctl restart mysql
+
+# and now you can access your database like this:
+mysql -u user_name -h database_server_ip -p
+
+# but you may get ERROR MSG from mysql, because you don't have privilege.
+
+# at last you need to grant some privileges to someone which can connect 
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+# first * means database. and * means all the databases
+# second means table. and * means all the tables
+# and 'root' here means database user
+# '%' means ip address which now means every ip address can access this database
+# 'password' here is the password you set for the user
+# now you can access remote database, enjoy it ~
