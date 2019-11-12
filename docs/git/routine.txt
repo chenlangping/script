@@ -1,0 +1,5 @@
+# every day use
+git status
+git add .
+git commit -m "some msg"
+git push

@@ -1,0 +1,12 @@
+# show all remote machines 
+git remote
+
+# show all remote machines with their urls
+git remote -v
+
+# REMEMBER!!! origin is just a default name, so it is just as normal as other names.
+# and you can also change name when clone the repo
+git clone -o remote_name https://github.com/someone/example.git
+
+# show the remote details
+git remote show remote_name

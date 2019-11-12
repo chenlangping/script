@@ -1,0 +1,22 @@
+# if you want to let remote host to access your machine
+# WARNING! THERE IS NO AUTH FOR THIS WAY, ANYONE CAN CONNECT TO YOUR SERVER
+
+# first, please stop docker
+sudo systemctl stop docker
+
+# then create a directory to store your config file
+sudo mkdir -p /etc/systemd/system/docker.service.d
+
+# touch a file named "options.conf" and edit it like this:
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H unix:// -H tcp://0.0.0.0:2375
+
+# reload the systemd daemon.
+sudo systemctl daemon-reload
+
+# restart Docker
+sudo systemctl restart docker
+
+# and now you can use the following command to connect
+docker -H IPaddress:Port some_docker_command

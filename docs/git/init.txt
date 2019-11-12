@@ -1,0 +1,5 @@
+# Create an empty Git repository or reinitialize an existing one
+git init repo-name
+
+# git init can also reinitialize an existing one, so don't worry files will lose
+# it just add a .git directory.

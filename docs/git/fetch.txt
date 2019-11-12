@@ -1,0 +1,2 @@
+# get remote updates
+git fetch origin master
