@@ -10,3 +10,6 @@ git clone -o remote_name https://github.com/someone/example.git
 
 # show the remote details
 git remote show remote_name
+
+# add remote 
+git remote add alias_you_like url

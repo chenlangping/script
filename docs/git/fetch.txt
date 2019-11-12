@@ -1,2 +1,27 @@
-# get remote updates
-git fetch origin master
+# first you need to have a remote host(git clone will create a default origin host for you)
+# or you can add by yourself
+git remote add ucas https://github.com/chenlangping/ucas_algorithm
+
+# get all remote updates
+git fetch
+
+# get specific host
+git fetch ucas
+
+# get specific branch
+git fetch ucas master
+
+# get specific branch and use a specific local branch to trace it
+git fetch ucas master:local_branch
+
+# if you change to that local_branch, you can see the new repo
+git checkout local_branch
+
+# and origin branch has been fetched to local,but you need to merge them
+git merge origin/master
+
+# or use rebase
+git rebase origin/master
+
+# you can use git pull to replace git fetch and git merge
+git pull remote_host remote_branch:local_branch

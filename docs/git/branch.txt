@@ -13,5 +13,11 @@ git branch new-breanch-name
 # create a new branch and switch to it
 git branch -b new-breanch-name
 
+# just switch to another branch
+git checkout branch_name
+
+# create a new branch based on the remote branch
+git checkout -b newBrach origin/master
+
 # create a new branch to trace the remote branch
 git branch --track new-breanch-name remote-branch
