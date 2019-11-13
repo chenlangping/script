@@ -1,0 +1,30 @@
+# install
+sudo apt-get install gnupg
+sudo yum install gnupg
+
+# key generate
+gpg --gen-key
+
+# it will create a directory in ~/.gnupg and all the keys will be stored there
+# and it will ask you some configuration, at last it will spend some time to
+# generate the random key, you can login with another shell and use following command:
+dd if=/dev/vda1 of=/dev/zero
+
+# and after few minutes, the key will be generated
+# there will be a hash code, which can replace your email as user id
+
+# now you can see there is a key-pair generated
+gpg --list-keys
+
+# output public key and private key(need passphrase)
+gpg --armor --output public-key.txt --export user_id
+gpg --armor --output private-key.txt --export-secret-keys user_id
+
+# you can import other's public key to gpg, so you can use that key to encrypt some file
+gpg --import other_guy's_public-key.txt
+
+# so you can use that public key to encrypt the file.txt to file_encrypted.txt
+gpg --recipient user_id --output file_encrypted.txt --encrypt file.txt
+
+# and he can decrypt it 
+gpg --output file.txt --decrypt file_encrypted.txt
