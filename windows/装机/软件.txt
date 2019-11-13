@@ -1,0 +1,79 @@
+编程相关
+	java
+	Python
+	Android
+	Jetbrains全家桶
+		IDEA
+		Pycharm
+		datagrip
+	git
+	
+系统
+	docker
+	WSL
+	vmware
+	英伟达驱动
+	鲁大师
+	teamviewer
+
+云服务器
+	Xshell
+	xftp
+
+聊天社交
+	QQ
+	微信
+
+科学上网
+	v2ray
+
+影音播放
+	暴风影音
+
+图片处理
+	美图秀秀
+
+输入法
+	搜狗
+
+音乐
+	iCloud
+	网易云音乐
+	QQ音乐
+
+截图
+	QQ微信自带
+
+PDF阅读
+	Acrobat Reader DC
+
+下载工具
+	FDM
+	迅雷
+	百度网盘
+
+安全
+	360
+
+压缩
+	360压缩
+
+办公
+	office全家
+
+游戏
+	网易UU加速器
+	FF14
+		弹琴
+		ACT
+	暴雪
+		炉石
+
+浏览器
+	chrome
+	firefox
+
+编辑器
+	sublime
+	typora
+	有道云笔记
