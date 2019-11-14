@@ -28,3 +28,9 @@ gpg --recipient user_id --output file_encrypted.txt --encrypt file.txt
 
 # and he can decrypt it 
 gpg --output file.txt --decrypt file_encrypted.txt
+
+# sign a file and it will generate file.txt.gpg
+gpg --sign file.txt
+
+# verify the file
+gpg --verify file.txt.gpg
