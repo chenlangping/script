@@ -3,7 +3,7 @@ sudo apt-get install gnupg
 sudo yum install gnupg
 
 # key generate
-gpg --gen-key
+gpg --full-gen-key
 
 # it will create a directory in ~/.gnupg and all the keys will be stored there
 # and it will ask you some configuration, at last it will spend some time to
@@ -11,26 +11,34 @@ gpg --gen-key
 dd if=/dev/vda1 of=/dev/zero
 
 # and after few minutes, the key will be generated
-# there will be a hash code, which can replace your email as user id
+# there will be a hash code, which can replace your email as a user id
 
 # now you can see there is a key-pair generated
 gpg --list-keys
 
 # output public key and private key(need passphrase)
-gpg --armor --output public-key.txt --export user_id
-gpg --armor --output private-key.txt --export-secret-keys user_id
+gpg --armor --output public-key.txt --export user-id
+gpg --armor --output private-key.txt --export-secret-keys user-id
+
+# once you generate your public key, please generate revocation certificate
+gpg --output revoke.asc --gen-revoke user-id
 
 # you can import other's public key to gpg, so you can use that key to encrypt some file
-gpg --import other_guy's_public-key.txt
+gpg --import other-guy's-public-key.txt
 
-# so you can use that public key to encrypt the file.txt to file_encrypted.txt
-gpg --recipient user_id --output file_encrypted.txt --encrypt file.txt
+# so you can use that public key to encrypt the file.txt to file-encrypted.txt
+gpg --recipient user-id --output file-encrypted.txt --encrypt file.txt
 
-# and he can decrypt it 
-gpg --output file.txt --decrypt file_encrypted.txt
+# and only that guy can decrypt it 
+gpg --output file.txt --decrypt file-encrypted.txt
 
 # sign a file and it will generate file.txt.gpg
 gpg --sign file.txt
 
 # verify the file
 gpg --verify file.txt.gpg
+
+# key server (and not recommand to use key server)
+http://keyserver.ubuntu.com/
+https://pgp.mit.edu/
+http://keys.gnupg.net/
