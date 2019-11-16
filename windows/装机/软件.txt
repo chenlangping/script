@@ -15,6 +15,7 @@
 	英伟达驱动
 	鲁大师
 	teamviewer
+	腾讯桌面管理
 
 云服务器
 	Xshell
