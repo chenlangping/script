@@ -1,0 +1,3 @@
+### there are three ways to use docker network
+1. only loopback 
+2. share the host's network namespace
