@@ -7,7 +7,8 @@ gpg --full-gen-key
 
 # it will create a directory in ~/.gnupg and all the keys will be stored there
 # and it will ask you some configuration, at last it will spend some time to
-# generate the random key, you can login with another shell and use following command:
+# generate the random key, you can login with another shell and use following command
+# you can use blkid to see you disk
 dd if=/dev/vda1 of=/dev/zero
 
 # and after few minutes, the key will be generated
