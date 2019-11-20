@@ -1,10 +1,32 @@
+# check the status of service
+service apache2 status
+systemctl status apache2
+
 # start daemon
-service start httpd 
-systemctl start httpd
+service apache2 start
+systemctl start apache2
+
+# stop service(daemon)
+service apache2 stop
+systemctl stop apache2
 
 # start with boot
 systemctl enable httpd
 
-# when you install a software, it will add it's service in /usr/lib/systemd/system
-# so systemctl enable will create a soft link to /etc/systemd/system
-# and systemd will run all the files that in /etc/systemd/system
+# reload the config file without shutdown the daemon
+systemctl reload apache2
+
+# and you can use systemctl to reboot or to shutdown your PC
+systemctl poweroff
+systemctl reboot
+
+# what is the difference between service and systemctl?
+when you use service, it actually use the binary file in /etc/init.d/, so you can 
+cd to that directory to run those binary files so no need for "service"
+But systemctl is totally different, you can write config file under it's directory
+
+# when you install a software, it will add it's service to /usr/lib/systemd/system(CentOS) 
+# or /lib/systemd/system(Ubuntu)
+
+# if you cd to the /lib/systemd/system, you'll a lot of .service and .target
+# target is a bunch of services

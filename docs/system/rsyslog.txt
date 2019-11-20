@@ -1,0 +1,18 @@
+# log files are so important that anyone should know how to deal with them
+# the log daemon is called "rsyslogd" and its' config file is in /etc/rsyslog.conf
+
+# it is pretty easy to customize your own.
+# there are serval msgs that system generates, you can use "man 3 syslog" to see.
+
+# an example for rsyslog
+#############################################################
+#  auth,authpriv.*				/var/log/auth.log			#
+#  *.*;auth,authpriv.none		-/var/log/syslog			#
+#  kern.*						-/var/log/kern.log			#
+#  mail.*						-/var/log/mail.log			#
+#  mail.err						/var/log/mail.err			#
+#  news.crit					/var/log/news/news.crit		#
+#  news.err						/var/log/news/news.err		#
+#  news.notice					-/var/log/news/news.notice	#
+#############################################################
+# "-" means put the msg into RAM buffer. 

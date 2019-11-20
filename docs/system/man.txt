@@ -1,0 +1,2 @@
+# See the linux filesystem hierarchy
+man 7 hier
