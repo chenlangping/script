@@ -1,0 +1,55 @@
+# tmux hierary 
+TmuxServer -- session -- window -- pane
+
+# tmux create a new session, if you don't use name, then the tmux will
+# give a number to your session
+tmux new -s <session-name>
+
+# detach from the session
+tmux detach
+
+# show all the sessions
+tmux ls
+
+# reconnect to the session
+tmux attach -t <session-name>
+
+# switch a session to another
+tmux switch -t <session-name>
+
+# rename your session
+tmux rename-session -t <old-name> <new-name>
+
+# delete your session
+tmux kill-session -t <session-name>
+
+# delete all your sessions
+tmux kill-server
+
+# so now we have a simple way to use tmux
+1. tmux new -s install_big_program
+2. wget www.example.com/bigfile.gz
+3. tmux detach
+4. tmux attach -t install_big_program
+
+# you can create several windows
+tmux new-window -n <window-name>
+
+# and you can switch to other windows
+tmux select-window -t <window-name>
+
+# create a pane
+tmux split-window -v
+tmux split-window -h
+
+# select which pane to use
+tmux select-pane -U
+tmux select-pane -D
+tmux select-pane -L
+tmux select-pane -R
+
+# switch your pane
+tmux swap-pane -U
+
+# or you can use your mouse to control
+ctrl+b  m
