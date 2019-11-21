@@ -16,3 +16,5 @@ public interface Servlet {
 # so it just a interface in java with 5 methods
 # but there are many classes have implemented this interface
 # so what we need to do is just extend from them
+# compile
+javac -cp "servlet-api.jar" Servlet_Helloworld.java
