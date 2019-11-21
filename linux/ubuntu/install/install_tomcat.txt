@@ -1,0 +1,69 @@
+1. update
+sudo apt update
+
+2. install jdk first
+sudo apt install default-jdk
+
+3. add user
+sudo useradd -r -m -U -d /opt/tomcat -s /bin/false tomcat
+
+4. get install file from net
+wget http://www-eu.apache.org/dist/tomcat/tomcat-9/v9.0.27/bin/apache-tomcat-9.0.27.tar.gz -P /tmp
+
+5. decompress
+sudo tar xf /tmp/apache-tomcat-9*.tar.gz -C /opt/tomcat
+
+6. create a soft link
+sudo ln -s /opt/tomcat/apache-tomcat-9.0.27 /opt/tomcat/latest
+
+7. change owner
+sudo chown -RH tomcat: /opt/tomcat/latest
+
+8. let all scripts can run
+sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+
+9. use systemctl 
+sudo vim /etc/systemd/system/tomcat.service
+
+if your JDK is not in /usr/lib/jvm/default-java, you should change the 
+following JAVA_HOME
+************************************************
+[Unit]
+Description=Tomcat 9 servlet container
+After=network.target
+
+[Service]
+Type=forking
+
+User=tomcat
+Group=tomcat
+
+Environment="JAVA_HOME=/usr/lib/jvm/default-java"
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true"
+
+Environment="CATALINA_BASE=/opt/tomcat/latest"
+Environment="CATALINA_HOME=/opt/tomcat/latest"
+Environment="CATALINA_PID=/opt/tomcat/latest/temp/tomcat.pid"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/opt/tomcat/latest/bin/startup.sh
+ExecStop=/opt/tomcat/latest/bin/shutdown.sh
+
+[Install]
+WantedBy=multi-user.target
+************************************************
+
+10. enable systemctl to control 
+sudo systemctl daemon-reload
+
+11. start tomcat
+sudo systemctl start tomcat
+
+12. 
+sudo systemctl status tomcat
+
+13. 
+sudo systemctl enable tomcat
+
+14. config firewall
+sudo ufw allow 8080/tcp
