@@ -1,0 +1,5 @@
+# What is JDK?
+JDK includes three things: Java Language, JVM and Java API. 
+
+# What is JRE?
+JRE includes two things: JVM and Java API.

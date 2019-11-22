@@ -1,0 +1,24 @@
+public class StackOverFlow {
+    private void runForever() {
+        while (true) {
+            // do nothing
+        }
+    }
+
+    public void createThreads() {
+        while (true) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    runForever();
+                }
+            });
+            thread.start();
+        }
+    }
+
+    public static void main(String[] args) {
+        StackOverFlow stackOverFlow = new StackOverFlow();
+        stackOverFlow.createThreads();
+    }
+}

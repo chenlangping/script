@@ -35,4 +35,3 @@ mvn package
 
 # put the jar file to your local repo to let other project to use
 mvn install
-
