@@ -1,0 +1,14 @@
+# Now I have a HelloWorld.java and it just print out "hello world"
+# How to distribute this file as an executable JAR file so everyone
+# can use it?
+1. create a Hello.mf file and type like this:
+Manifest-Version: 1.0
+Main-Class: HelloWorld
+
+# !!! WANRING !!! this hello.mf should end with a blank line
+
+2. type like this:
+jar -cmf Hello.mf Hello.jar HelloWorld.class
+
+3. done! you can use this command to run
+java -jar Hello.jar
