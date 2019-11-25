@@ -117,3 +117,6 @@ auth
 
 # FF14
 *.png
+
+# Java
+*.class
