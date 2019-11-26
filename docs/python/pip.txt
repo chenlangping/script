@@ -1,0 +1,2 @@
+# set proxy
+pip install requests --proxy 127.0.0.1:1081
