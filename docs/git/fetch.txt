@@ -6,13 +6,13 @@ git remote add ucas https://github.com/chenlangping/ucas_algorithm
 git fetch
 
 # get specific host
-git fetch ucas
+git fetch origin
 
 # get specific branch
-git fetch ucas master
+git fetch origin master
 
 # get specific branch and use a specific local branch to trace it
-git fetch ucas master:local_branch
+git fetch origin master:local_branch
 
 # if you change to that local_branch, you can see the new repo
 git checkout local_branch

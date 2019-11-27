@@ -1,3 +1,13 @@
+# the location of config file
+
+# For Linux
+1. /etc/gitconfig  [--system normally not exist]
+2. ~/.gitconfig    [--global user config file]
+3. .git/config     [only for this repo]
+
+# For Windows
+$HOME/.gitconfig
+
 # set username and email
 git config [--global] user.name "YourName"
 git config [--global] user.email "YourEmailAddress"

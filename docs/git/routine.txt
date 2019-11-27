@@ -1,4 +1,7 @@
 # every day use
+git pull
+	- git fetch origin master
+	- git merge origin/master
 git status
 git add .
 git commit -m "some msg"
