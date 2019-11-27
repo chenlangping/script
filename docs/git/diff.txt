@@ -3,6 +3,6 @@ git diff
 
 # so if you run git add .,then it will stage all the changes and git diff will show nothing
 
-# show the difference between staged file and commit file
+# show the difference between staged file and the last commit file
 git diff --cached 
 git diff --staged

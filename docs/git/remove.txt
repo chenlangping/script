@@ -1,0 +1,10 @@
+# I want remove the file on my disk and don't track it
+rm test.txt
+git rm test.txt
+
+# if the file has been in stage area, you may need to use
+git rm -f test.txt
+
+# I just don't want git to trace my file e.g. I forget to 
+# put that file into .gitignore
+git rm --cached test.txt

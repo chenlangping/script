@@ -5,4 +5,5 @@ git pull
 git status
 git add .
 git commit -m "some msg"
+	- git commit -a -m "some msg"
 git push
