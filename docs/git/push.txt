@@ -4,5 +4,8 @@
 git reset --hard commit-id
 git reset --soft commit-id
 
-# secont push it to the remote
+# second push it to the remote
 git push origin --force
+
+# how to push to remote 
+git push remote-machine remote-branch

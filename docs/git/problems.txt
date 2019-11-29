@@ -1,0 +1,8 @@
+# I just commit and I found I forgot to commit something.
+git add .
+git commit -m "some msg"
+-- at this time you find you forget to add some files
+git add some_file
+git commit --amend -m "new msg"
+-- and the "some msg" will be delete 
+

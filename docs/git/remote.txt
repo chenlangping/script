@@ -11,5 +11,19 @@ git clone -o remote_name https://github.com/someone/example.git
 # show the remote details
 git remote show remote_name
 
+##################################################################
+# git: 'credential-cache' is not a git command. See 'git --help'.
+# * remote origin
+#   Fetch URL: https://github.com/chenlangping/test
+#   Push  URL: https://github.com/chenlangping/test
+#   HEAD branch: master
+#   Remote branch:
+#     master tracked
+#   Local branch configured for 'git pull':
+#     master merges with remote master
+#   Local ref configured for 'git push':
+#     master pushes to master (fast-forwardable)
+##################################################################
+
 # add remote 
 git remote add alias_you_like url
