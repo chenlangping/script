@@ -4,8 +4,17 @@ git branch
 # show all remote branches
 git branch -r
 
+# show verbose info
+git branch -v
+
 # show local branches and remote branches
 git branch -a
+
+# show the branches that has merged into current branch
+git branch --merged
+
+# show the branches that has not merged into current branch
+git branch --no-merged
 
 # create a new branch
 git branch new-breanch-name
