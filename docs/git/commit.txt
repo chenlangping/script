@@ -1,0 +1,5 @@
+# every time you use git commit will create a commit object
+# it contains some commit message(author, commit content and so on)
+# a pointer to a tree and a pointer to its parent(if exists)
+
+# the tree includes all the blob objects that contains the true content
