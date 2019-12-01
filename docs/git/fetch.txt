@@ -2,7 +2,7 @@
 # or you can add by yourself
 git remote add ucas https://github.com/chenlangping/ucas_algorithm
 
-# get all remote updates
+# get all remote updates, it will move origin/master to the newest one
 git fetch
 
 # get specific host
@@ -10,6 +10,9 @@ git fetch origin
 
 # get specific branch
 git fetch origin master
+
+# use local branch to trace that remote branch
+git checkout -b local_branch origin/master
 
 # get specific branch and use a specific local branch to trace it
 git fetch origin master:local_branch

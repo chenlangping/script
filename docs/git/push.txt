@@ -1,11 +1,2 @@
-# I found there is a bad push, e.g. I push my password to github
-# what should I do?
-# first reset your local repo, depends on you want your work directory change or not.
-git reset --hard commit-id
-git reset --soft commit-id
-
-# second push it to the remote
-git push origin --force
-
 # how to push to remote 
-git push remote-machine remote-branch
+git push remote-machine local-branch-name:remote-branch

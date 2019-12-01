@@ -6,3 +6,11 @@ git add some_file
 git commit --amend -m "new msg"
 -- and the "some msg" will be delete 
 
+# I found there is a bad push, e.g. I push my password to github
+# what should I do?
+# first reset your local repo, depends on you want your work directory change or not.
+git reset --hard commit-id
+git reset --soft commit-id
+
+# second push it to the remote
+git push origin --force
