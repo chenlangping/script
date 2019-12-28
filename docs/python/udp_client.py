@@ -3,6 +3,7 @@
 
 
 import socket
+
 udp_server_address = "127.0.0.1"
 udp_port = 6789
 message = b"Hello server!"

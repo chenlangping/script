@@ -2,15 +2,18 @@
 # -- coding:utf-8 --
 import requests
 
+
 class URL(object):
-	url = "www.example.com"
+    url = "www.example.com"
+
 
 class NetworkException(Exception):
-	# do something when network sucks!
+    # do something when network sucks!
     pass
 
+
 class Cli(object):
-	headers = {
+    headers = {
         'Connection': 'keep-alive',
         'Pragma': 'no-cache',
         'Cache-Control': 'no-cache',
@@ -22,8 +25,8 @@ class Cli(object):
     }
 
     def __init__(self):
-    	super(Cli, self).__init__()
-    	self.s = requests.Session()
+        super(Cli, self).__init__()
+        self.s = requests.Session()
         self.s.headers = self.headers
 
     def get(self, url, *args, **kwargs):
@@ -38,9 +41,11 @@ class Cli(object):
             raise NetworkException
         return r
 
+
 def main():
-	c = Cli()
-	c.get(URL.url)
+    c = Cli()
+    c.get(URL.url)
+
 
 if __name__ == '__main__':
-	main()
+    main()

@@ -4,6 +4,7 @@
 # pip install requests
 
 import requests
+
 r = requests.get('https://api.github.com/events')
 
 # r is a response object <class 'requests.models.Response'>
