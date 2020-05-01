@@ -39,6 +39,11 @@ set report      =0         " Always report changed lines.
 set synmaxcol   =200       " Only highlight the first 200 columns.
 
 set list                   " Show non-printable characters.
+
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936  " @clp
+set termencoding=utf-8  " @clp
+set encoding=utf-8  " @clp
+
 if has('multi_byte') && &encoding ==# 'utf-8'
   let &listchars = 'tab:▸ ,extends:❯,precedes:❮,nbsp:±'
 else
