@@ -184,7 +184,7 @@ if __name__ == '__main__':
     start = input('请输入您要下载的B站av号或者视频链接地址:')
     if start.startswith('BV'):
         # 如果输入的是BV号
-        start_url = 'https://api.bilibili.com/x/web-interface/view?aid=' + getAid(start[2:])
+        start_url = 'https://api.bilibili.com/x/web-interface/view?aid=' + str(getAid(start[2:]))
     elif start.isdigit() == True:  # 如果输入的是av号
         # 获取cid的api, 传入aid即可
         start_url = 'https://api.bilibili.com/x/web-interface/view?aid=' + start
