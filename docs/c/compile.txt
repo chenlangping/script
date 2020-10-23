@@ -10,3 +10,6 @@ cpp -v /dev/null -o /dev/null    # see more: https://gcc.gnu.org/onlinedocs/cpp/
 
 # I want to trace system calls and signals
 strace ./a.out
+
+# compile a static lib
+ar cr libstatic.a a.o b.o c.o
