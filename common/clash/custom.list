@@ -1,0 +1,2 @@
+# 一些自定义的clash规则
+IP-CIDR,138.128.215.250/32,no-resolve
