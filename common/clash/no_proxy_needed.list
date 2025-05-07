@@ -15,3 +15,6 @@ DOMAIN-SUFFIX,gumingnc.com
 
 # 运满满的图床
 DOMAIN-SUFFIX,lqfast.com
+
+# dji不需要
+DOMAIN-SUFFIX,dji.com
