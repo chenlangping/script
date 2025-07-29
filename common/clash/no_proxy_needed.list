@@ -19,4 +19,9 @@ DOMAIN-SUFFIX,lqfast.com
 # dji不需要
 DOMAIN-SUFFIX,dji.com
 
+# 迅雷电影下载
 DOMAIN-SUFFIX,dy2018.com
+
+# 鼠标控制
+DOMAIN-SUFFIX,vxe.com
+DOMAIN-SUFFIX,atkgear.com
