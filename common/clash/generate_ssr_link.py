@@ -42,7 +42,6 @@ def generate_ssr_link():
     # 1. 对密码、备注和分组进行 Base64 编码
     encoded_password = urlsafe_b64_encode(PASSWORD)
     encoded_remarks = urlsafe_b64_encode(REMARKS)
-    encoded_group = urlsafe_b64_encode(GROUP)
     
     # 2. 拼接主要的配置部分
     # 格式: ip:port:protocol:method:obfs:password_b64
