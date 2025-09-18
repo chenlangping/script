@@ -27,9 +27,6 @@ OBFUSCATE = "tls1.2_ticket_auth"
 # [可选] 为这个链接添加一个备注，方便在客户端中识别
 REMARKS = "我的阿里云服务器"
 
-# [可选] 为这个链接设置一个分组
-GROUP = "ALIYUN_GROUP"
-
 # ====================================================================
 # --- 脚本核心逻辑，无需修改 ---
 # ====================================================================
@@ -54,7 +51,7 @@ def generate_ssr_link():
     # 3. 拼接参数部分
     # 格式: /?obfsparam=...&protoparam=...&remarks=...&group=...
     # obfsparam 和 protoparam 你的命令里没有，所以留空
-    params_part = f"/?obfsparam=&protoparam=&remarks={encoded_remarks}&group={encoded_group}"
+    params_part = f"/?obfsparam=&protoparam=&remarks={encoded_remarks}&group="
     
     # 4. 将主配置和参数部分组合成一个完整的待编码字符串
     full_unencoded_string = main_part + params_part
