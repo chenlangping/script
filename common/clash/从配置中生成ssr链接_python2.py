@@ -6,9 +6,13 @@ import base64
 import sys
 import subprocess # 导入 subprocess 模块
 
+# 设置默认编码为UTF-8，解决中文编码问题
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 # --- 配置 ---
 CONFIG_FILE_PATH = "/etc/shadowsocks-r/config.json"
-SERVER_NAME = "阿里云服务器"
+SERVER_NAME = u"阿里云服务器"
 
 def get_public_ip():
     """
@@ -45,21 +49,25 @@ def generate_ssr_link(config, server_name):
     根据给定的 SSR JSON 配置字典生成 ssr:// 订阅链接。
     """
     try:
-        # 从配置中提取必要参数
-        server = config.get("server", "")
+        # 从配置中提取必要参数，确保都是unicode字符串
+        server = unicode(config.get("server", ""))
         server_port = config.get("server_port", 8888)
-        protocol = config.get("protocol", "origin")
-        method = config.get("method", "aes-256-cfb")
-        obfs = config.get("obfs", "plain")
-        password = config.get("password", "")
-        obfs_param = config.get("obfs_param", "")
-        protocol_param = config.get("protocol_param", "")
+        protocol = unicode(config.get("protocol", "origin"))
+        method = unicode(config.get("method", "aes-256-cfb"))
+        obfs = unicode(config.get("obfs", "plain"))
+        password = unicode(config.get("password", ""))
+        obfs_param = unicode(config.get("obfs_param", ""))
+        protocol_param = unicode(config.get("protocol_param", ""))
 
+        # 确保server_name是unicode类型
+        if isinstance(server_name, str):
+            server_name = server_name.decode('utf-8')
+        
         # 对密码进行 URL-safe Base64 编码 (移除末尾的 '=')
         password_b64 = base64.urlsafe_b64encode(password.encode('utf-8')).rstrip('=')
 
         # 构建主要部分
-        main_part = "%s:%s:%s:%s:%s:%s" % (server, server_port, protocol, method, obfs, password_b64)
+        main_part = u"%s:%s:%s:%s:%s:%s" % (server, server_port, protocol, method, obfs, password_b64)
 
         # 构建参数部分
         params = {}
@@ -69,6 +77,8 @@ def generate_ssr_link(config, server_name):
         if protocol_param:
             protoparam_b64 = base64.urlsafe_b64encode(protocol_param.encode('utf-8')).rstrip('=')
             params['protoparam'] = protoparam_b64
+        
+        # 新增：添加服务器名称 (remark)
         if server_name:
             remark_b64 = base64.urlsafe_b64encode(server_name.encode('utf-8')).rstrip('=')
             params['remarks'] = remark_b64
@@ -78,7 +88,7 @@ def generate_ssr_link(config, server_name):
 
         # 组合成完整的待编码字符串
         if params_str:
-            full_str = "%s/?%s" % (main_part, params_str)
+            full_str = u"%s/?%s" % (main_part, params_str)
         else:
             full_str = main_part
 
@@ -129,7 +139,7 @@ def main():
     # 3. 将配置中的 server 地址替换为公网 IP
     ssr_config["server"] = public_ip
     print "[*] 已将服务器地址更新为: " + public_ip
-    print "[*] 服务器名称设置为: " + SERVER_NAME
+    print "[*] 服务器名称设置为: " + SERVER_NAME.encode('utf-8')
 
     # 4. 生成 SSR 链接
     ssr_link = generate_ssr_link(ssr_config, SERVER_NAME)
