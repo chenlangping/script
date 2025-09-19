@@ -8,6 +8,7 @@ import subprocess # 导入 subprocess 模块
 
 # --- 配置 ---
 CONFIG_FILE_PATH = "/etc/shadowsocks-r/config.json"
+SERVER_NAME = "阿里云服务器"
 
 def get_public_ip():
     """
@@ -39,7 +40,7 @@ def get_public_ip():
         return None
 
 
-def generate_ssr_link(config):
+def generate_ssr_link(config, server_name):
     """
     根据给定的 SSR JSON 配置字典生成 ssr:// 订阅链接。
     """
@@ -68,6 +69,9 @@ def generate_ssr_link(config):
         if protocol_param:
             protoparam_b64 = base64.urlsafe_b64encode(protocol_param.encode('utf-8')).rstrip('=')
             params['protoparam'] = protoparam_b64
+        if server_name:
+            remark_b64 = base64.urlsafe_b64encode(server_name.encode('utf-8')).rstrip('=')
+            params['remarks'] = remark_b64
 
         # 将参数字典转换为查询字符串
         params_str = '&'.join(["%s=%s" % (key, value) for key, value in params.items()])
@@ -86,6 +90,18 @@ def generate_ssr_link(config):
 
     except Exception as e:
         print >> sys.stderr, "[!] 生成链接时出错: " + str(e)
+        return None
+
+def encode_subscription(ssr_link):
+    """
+    将 SSR 链接进行 base64 编码，用于订阅
+    """
+    try:
+        # 对 SSR 链接进行标准 base64 编码
+        encoded_subscription = base64.b64encode(ssr_link.encode('utf-8'))
+        return encoded_subscription
+    except Exception as e:
+        print >> sys.stderr, "[!] 编码订阅链接时出错: " + str(e)
         return None
 
 def main():
@@ -113,17 +129,29 @@ def main():
     # 3. 将配置中的 server 地址替换为公网 IP
     ssr_config["server"] = public_ip
     print "[*] 已将服务器地址更新为: " + public_ip
+    print "[*] 服务器名称设置为: " + SERVER_NAME
 
     # 4. 生成 SSR 链接
-    ssr_link = generate_ssr_link(ssr_config)
+    ssr_link = generate_ssr_link(ssr_config, SERVER_NAME)
 
     # 5. 打印最终结果
     if ssr_link:
-        print "\n" + "="*40
+        print "\n" + "="*50
         print "🎉 成功生成 SSR 订阅链接! 🎉"
-        print "="*40
+        print "="*50
+        print "原始 SSR 链接:"
         print ssr_link
-        print "="*40
+        print "\n" + "-"*50
+        
+        # 6. 新增：生成 base64 编码的订阅链接
+        encoded_subscription = encode_subscription(ssr_link)
+        if encoded_subscription:
+            print "Base64 编码的订阅链接:"
+            print encoded_subscription
+            print "-"*50
+            print "💡 提示: 将上面的 Base64 编码链接复制到 SSR 客户端的订阅地址中使用"
+        
+        print "="*50
 
 if __name__ == "__main__":
     main()
