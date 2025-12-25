@@ -32,3 +32,6 @@ DOMAIN-SUFFIX,zhelibuild.com
 
 # 字节内部文档
 DOMAIN-SUFFIX,larkoffice.com
+
+# 字节内部代码平台
+DOMAIN-SUFFIX,byted.org
