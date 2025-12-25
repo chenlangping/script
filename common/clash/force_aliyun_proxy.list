@@ -1,5 +1,5 @@
 # 虽然在中国境内 但是仍然使用阿里云代理 
-DOMAIN-SUFFIX,feishu.cn
-DOMAIN-SUFFIX,larksuite.cn
-DOMAIN-SUFFIX,larksuite.com
-DOMAIN-SUFFIX,rylan.cn
+# DOMAIN-SUFFIX,feishu.cn
+# DOMAIN-SUFFIX,larksuite.cn
+# DOMAIN-SUFFIX,larksuite.com
+# DOMAIN-SUFFIX,rylan.cn
