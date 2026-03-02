@@ -1,5 +1,6 @@
 # 不需要走代理的部分
 IP-CIDR,138.128.215.250/32,no-resolve
+IP-CIDR,198.35.47.102/32,no-resolve
 DOMAIN-SUFFIX,antfin-inc.com
 DOMAIN-SUFFIX,alicdn.com
 DOMAIN-SUFFIX,21cnjy.com
