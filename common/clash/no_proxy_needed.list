@@ -37,3 +37,6 @@ DOMAIN-SUFFIX,byted.org
 DOMAIN-SUFFIX,bytetech.info
 DOMAIN-SUFFIX,goofy.app
 DOMAIN-SUFFIX,jinritemai.com
+
+# 放行 Tailscale 的 IPv4 网段
+IP-CIDR,100.64.0.0/10,DIRECT
