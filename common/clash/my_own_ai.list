@@ -1,3 +1,9 @@
 # Claude Code / Claude Web 的第三方列表补充
 DOMAIN-SUFFIX,claude.com
 DOMAIN-SUFFIX,claudeusercontent.com
+
+# ChatGPT / Codex 核心域名，避免第三方 OpenAI 规则集拉取失败时回落到通用策略
+DOMAIN-SUFFIX,chatgpt.com
+DOMAIN-SUFFIX,openai.com
+DOMAIN-SUFFIX,oaistatic.com
+DOMAIN-SUFFIX,oaiusercontent.com
