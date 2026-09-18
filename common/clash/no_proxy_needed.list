@@ -37,6 +37,8 @@ DOMAIN-SUFFIX,byted.org
 DOMAIN-SUFFIX,bytetech.info
 DOMAIN-SUFFIX,goofy.app
 DOMAIN-SUFFIX,jinritemai.com
+# DataLeap 内网入口，避免被通用 tiktok 关键词规则送入代理
+DOMAIN,dataleap-global.tiktok-row.net
 
 # 放行 Tailscale 的 IPv4 网段
 IP-CIDR,100.64.0.0/10,no-resolve
