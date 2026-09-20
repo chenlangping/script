@@ -40,6 +40,15 @@ DOMAIN-SUFFIX,jinritemai.com
 # DataLeap 内网入口，避免被通用 tiktok 关键词规则送入代理
 DOMAIN,dataleap-global.tiktok-row.net
 
+# 飞书内网缓存与国内网页资源
+DOMAIN,lark-update-cache.lark-internal
+DOMAIN,ipolyfill.edge-byted.com
+DOMAIN,meegoplg.larkofficepkg.com
+DOMAIN,lf-static.applogcdn.com
+
+# 51 社保
+DOMAIN,zc.51shebao.com
+
 # 放行 Tailscale 的 IPv4 网段
 IP-CIDR,100.64.0.0/10,no-resolve
 
