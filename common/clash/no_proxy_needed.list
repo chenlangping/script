@@ -11,6 +11,12 @@ DOMAIN-SUFFIX,alibaba-inc.com
 DOMAIN-SUFFIX,alipay.com
 DOMAIN-SUFFIX,1688.com
 
+# 盒马接口、登录与页面直连
+DOMAIN-SUFFIX,freshippo.com
+
+# 手机日志中的运营商 BSF 鉴权服务，避免绕行境外代理
+DOMAIN,bsf.mnc011.mcc460.pub.3gppnetwork.org
+
 # 古茗
 DOMAIN-SUFFIX,gumingnc.com
 
