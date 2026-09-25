@@ -61,3 +61,6 @@ IP-CIDR,100.64.0.0/10,no-resolve
 
 # WxPusher 的 API 和备用长连接固定直连
 DOMAIN-SUFFIX,zjiecode.com
+
+# ptool自动刷馒头
+DOMAIN-SUFFIX,halomt.com
