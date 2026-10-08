@@ -8,3 +8,6 @@ DOMAIN-SUFFIX,openai.com
 DOMAIN-SUFFIX,oaistatic.com
 DOMAIN-SUFFIX,oaiusercontent.com
 DOMAIN-SUFFIX,oaistatsig.com
+
+# Grok 网页及静态资源（包含 cdn.grok.com）
+DOMAIN-SUFFIX,grok.com
