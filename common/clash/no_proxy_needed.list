@@ -48,6 +48,7 @@ DOMAIN-SUFFIX,jinritemai.com
 DOMAIN,dataleap-global.tiktok-row.net
 
 # 飞书内网缓存与国内网页资源
+DOMAIN,bytedance.feishuapp.com
 DOMAIN,lark-update-cache.lark-internal
 DOMAIN,ipolyfill.edge-byted.com
 DOMAIN,meegoplg.larkofficepkg.com
