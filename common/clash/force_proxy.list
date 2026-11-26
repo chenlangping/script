@@ -4,3 +4,6 @@ DOMAIN-SUFFIX,zoom.earth
 
 # updf虽然是国内公司 但是登录服务器在美国
 DOMAIN-SUFFIX,updf.com
+
+# vps监控
+DOMAIN-SUFFIX,vpsme.de
